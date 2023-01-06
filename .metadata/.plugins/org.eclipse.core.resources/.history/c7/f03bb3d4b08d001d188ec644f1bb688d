@@ -1,0 +1,69 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.BorderLayout;
+import java.awt.Container;
+
+public class LoginFrom extends JFrame {
+
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					LoginFrom frame = new LoginFrom();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public LoginFrom() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        frame.setBounds(870,0,500,600);
+        frame.setTitle("JLabel Introduction");
+
+        // Container
+        Container c = frame.getContentPane();
+        c.setLayout(null);
+
+        // set font 
+        Font Bold =new Font("Times New Roman", Font.BOLD, 20);
+        Font Normal =new Font("Times New Roman", Font.PLAIN, 18);
+
+        // set lable 
+        JLabel Login = new JLabel("Log In",JLabel.CENTER);
+        JLabel user_id = new JLabel("User ID");
+        JLabel password = new JLabel("Password");
+        
+        c.add(Login);
+        c.add(user_id);
+        c.add(password);
+        
+        Login.setBounds(100,50,200,40);
+        user_id.setBounds(100,100,200,40);
+        password.setBounds(100,150,200,40);
+		
+	}
+
+}

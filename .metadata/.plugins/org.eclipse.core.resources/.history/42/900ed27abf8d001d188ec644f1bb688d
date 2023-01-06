@@ -1,0 +1,58 @@
+import java.awt.Container;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.BorderLayout;
+import javax.swing.JLabel;
+
+public class sucess_Page extends JFrame {
+
+	private JPanel contentPane;
+
+	/**
+	 * Create the frame.
+	 */
+	public sucess_Page() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		JFrame frame = new JFrame();
+		frame.setVisible(true);
+		Container c = new Container();
+		c.add(frame);		
+		
+		JLabel lblNewLabel = new JLabel("ID");
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
+		lblNewLabel.setBounds(60, 0, 100, 37);
+		c.add(lblNewLabel);
+		
+		JLabel lblName = new JLabel("Name");
+		lblName.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
+		lblName.setBounds(88, 0, 100, 37);
+		c.add(lblName);
+		
+		JLabel lblMobile = new JLabel("Mobile");
+		lblMobile.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
+		lblMobile.setBounds(309, 0, 100, 37);
+		c.add(lblMobile);
+		
+		JLabel lblAddress = new JLabel("Address");
+		lblAddress.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
+		lblAddress.setBounds(189, 0, 100, 37);
+		c.add(lblAddress);
+		
+		JLabel data = new JLabel("");
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
+		lblNewLabel.setBounds(23, 20, 100, 37);
+		c.add(data);
+		
+		
+		setContentPane(contentPane);
+	}
+
+}

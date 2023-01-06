@@ -1,0 +1,134 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
+
+public class LoginFrom extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField;
+	private JPasswordField passwordField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					LoginFrom frame = new LoginFrom();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public LoginFrom() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+//		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        frame.setBounds(870,0,400,400);
+        frame.setTitle("JLabel Introduction");
+
+        // Container
+        Container c = frame.getContentPane();
+        c.setLayout(null);
+
+        // set font 
+        Font Bold =new Font("Times New Roman", Font.BOLD, 20);
+        Font Normal =new Font("Times New Roman", Font.PLAIN, 18);
+
+        // set lable 
+        JLabel Login = new JLabel("Log In",JLabel.CENTER);
+        Login.setFont(new Font("Times New Roman", Font.BOLD, 18));
+        JLabel user_id = new JLabel("User ID");
+        user_id.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+        JLabel password = new JLabel("Password");
+        password.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+        
+        c.add(Login);
+        c.add(user_id);
+        c.add(password);
+        
+        Login.setBounds(92,50,200,40);
+        user_id.setBounds(56,140,139,40);
+        password.setBounds(56,200,139,40);
+        
+        textField = new JTextField();
+        textField.setBounds(194, 142, 139, 40);
+        frame.getContentPane().add(textField);
+        textField.setColumns(10);
+          
+        passwordField = new JPasswordField();
+        passwordField.setBounds(194, 191, 139, 41);
+        frame.getContentPane().add(passwordField);
+        
+        JButton btnNewButton = new JButton("Login");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+                try {
+                	String user_id = textField.getText();
+                	String password =String.valueOf(passwordField.getPassword());
+                	Connection con = DB.dbConnection();
+                	String pq = "select * from student where user_id =? AND password = ?";
+        			PreparedStatement pst = con.prepareStatement(pq);
+        			pst.setString(1, user_id);
+        			pst.setString(2, password);
+        			
+        			ResultSet rs = pst.executeQuery();
+        			if(rs.next()) {
+        				JOptionPane.showMessageDialog(null,"ID: "+rs.getString(1)+"\nName: "+rs.getString(2)+"\nAdd: "+rs.getString(3)+"\nMobile: "+rs.getString(4));
+        			}else {
+        				try{Error.main(null);}catch(Exception e4) {e4.printStackTrace();}
+        			}
+                }catch(Exception e1) {
+                	Error.main(null);
+                	e1.printStackTrace();
+                	
+                }
+        	}
+        });
+        btnNewButton.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
+        btnNewButton.setBounds(120, 276, 110, 40);
+        frame.getContentPane().add(btnNewButton);
+        
+        JButton btnNewButton_1 = new JButton("Sign Up");
+        btnNewButton_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		SignUp.main(null);
+        	}
+        });
+        btnNewButton_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+        btnNewButton_1.setBounds(285, 16, 89, 23);
+        frame.getContentPane().add(btnNewButton_1);
+        
+       
+		
+	}
+}
